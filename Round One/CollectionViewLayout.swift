@@ -22,6 +22,9 @@ class CollectionViewLayout: UICollectionViewLayout {
         let insets = collectionView!.contentInset
         return collectionView!.bounds.width - (insets.left + insets.right)
     }
+    override var collectionViewContentSize: CGSize {
+        return CGSize(width: contentWidth, height: contentHeight)
+    }
     override func prepare(){
         if cache.isEmpty {
             
@@ -49,20 +52,23 @@ class CollectionViewLayout: UICollectionViewLayout {
                 contentHeight = max(contentHeight, frame.maxY)
                 yOffset[column] = yOffset[column] + height
                 
-                if column >= (numberOfColumn - 1 ) {
-                    column = 0
-                }else {
-                    column += 1
-                    column = self.column
+                column = column >= (numberOfColumn - 1) ? 0 : column+1
                 }
-                
-                
-                
-                
-                
-                
                 
             }
         }
+    // return frame with attribures in collectionView
+    override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+        var layoutAttributes = [UICollectionViewLayoutAttributes]()
+        
+        for attributes in cache {
+            if attributes.frame.intersects(rect) {
+                layoutAttributes.append(attributes)
+            }
+        }
+        return layoutAttributes
     }
-}
+    
+    
+    }
+
