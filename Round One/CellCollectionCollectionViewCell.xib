@@ -46,7 +46,7 @@
             </constraints>
             <connections>
                 <outlet property="imgView" destination="dV3-Qv-Xmq" id="xUF-Ep-g8x"/>
-                <outlet property="widthConstraint" destination="y1Q-Nx-NhB" id="V7O-6T-noW"/>
+                <outlet property="widthConstraint" destination="y1Q-Nx-NhB" id="nSR-rl-xqA"/>
             </connections>
             <point key="canvasLocation" x="33" y="26"/>
         </collectionViewCell>
